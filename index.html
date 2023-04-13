@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div id="app">
+        {{text}} {{name}} {{num}}
+        <input type="number" v-model="num">
+        <!-- 指令 (v-XX) -->
+        <hr> {{person.name}}
+        <img :src="person.image" :alt="person.name" width="150">
+        <p>錢包裡有{{person.cash}}</p>
+        <button type="button" @click="person.cash+=100">增加</button>
+        <!-- v-if -->
+        <i class="bi bi-gender-male" v-if="person.gender === 'male'"></i>
+        <i class="bi bi-gender-female" v-else></i>
+        <hr>
+        <!-- v-for -->
+        <ul>
+            <li v-for="item in people">
+                {{item.name}}
+                <img :src="item.image" :alt="item.name" width="150">
+                <i class="bi bi-gender-male" v-if="item.gender === 'male'"></i>
+                <i class="bi bi-gender-female" v-else></i>
+                <p>錢包裡有{{item.cash}}</p>
+                <button type="button" @click="item.cash++">增加</button>
+            </li>
+        </ul>
+    </div>
+    <script>
+        // 把資料拉出
+        Vue.createApp({
+            // data 函式
+            data: function() {
+                return {
+                    text: "我是Rio",
+                    name: "小家",
+                    // 變數、數值 0
+                    num: 0,
+                    person: {
+                        name: "angel",
+                        image: "https://i.pinimg.com/564x/12/47/15/124715971da3b9ea86989b61f8086800.jpg",
+                        cash: 1000,
+                        gender: 'male',
+                    },
+                    people: [{
+                        name: "angel",
+                        image: "https://i.pinimg.com/564x/12/47/15/124715971da3b9ea86989b61f8086800.jpg",
+                        cash: 1000,
+                        gender: 'male',
+                    }, {
+                        name: "漂亮阿姨",
+                        image: "https://i.pinimg.com/564x/ca/ff/15/caff15710e9eb1d32cdf8d072e446198.jpg",
+                        cash: 5000,
+                        gender: 'female',
+                    }, {
+                        name: "ken",
+                        image: "https://i.pinimg.com/564x/78/20/f5/7820f5a44088799cdd01432bc57132cd.jpg",
+                        cash: 2000,
+                        gender: 'male',
+                    }, ],
+                }
+            },
+            // methods 物件
+            methods: {
+
+            },
+            // mounted 函式
+            mounted: function() {
+
+            },
+        }).mount('#app');
+    </script>
+</body>
+
+</html>
